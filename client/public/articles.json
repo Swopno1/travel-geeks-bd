@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Difference between 'authorization' and 'authentication'",
+    "post": "Authorization means giving authority to someone. But authentication means the verification of the identity. Authorization allows to access, modify, addition of information based on the authorization. but authentication can be the first step for authorization.",
+    "author": "Md Amir Hossain",
+    "img": "https://i.ibb.co/9Y6FCpP/image7.jpg",
+    "date": "January 1, 2022"
+  },
+  {
+    "id": 2,
+    "title": "Why are you using 'firebase'? What other options do you have to implement authentication?",
+    "post": "I am using firebase for user authentication and hosting my web-app. But there is a lot of third-party services that provided similar services. Like Auth0, Auth2.0 etc.",
+    "author": "Md Amir Hossain",
+    "img": "https://i.ibb.co/9Y6FCpP/image7.jpg",
+    "date": "January 2, 2022"
+  },
+  {
+    "id": 3,
+    "title": "What other services does 'firebase' provide other than authentication",
+    "post": "Firebase has a wide range of services. They provide cloud-base services for hosting, deploying, Database authentication etc services.",
+    "author": "Md Amir Hossain",
+    "img": "https://i.ibb.co/9Y6FCpP/image7.jpg",
+    "date": "January 3, 2022"
+  }
+]
