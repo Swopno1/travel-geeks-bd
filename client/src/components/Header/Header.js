@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
@@ -10,6 +10,7 @@ const Header = () => {
 
   const handleSignOut = () => {
     signOut(auth);
+    Navigate('/');
   };
 
   return (
@@ -33,6 +34,16 @@ const Header = () => {
           />
         </div>
         <div className='user-menu text-right flex justify-end w-1/5 text-white'>
+          {user?.email === 'amirhossain.limon@gmail.com' && (
+            <>
+              <Link className='pr-2' to='/addservice'>
+                Add
+              </Link>
+              <Link className='pr-2' to='/manageservices'>
+                Manage
+              </Link>
+            </>
+          )}
           {user ? (
             <>
               <button onClick={handleSignOut}>Sign Out</button>

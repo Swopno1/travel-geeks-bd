@@ -11,7 +11,7 @@ const useServices = () => {
       });
   }, []);
 
-  return services;
+  return [services, setServices];
 };
 
 export default useServices;

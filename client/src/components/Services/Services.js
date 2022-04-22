@@ -3,7 +3,7 @@ import useServices from '../../hooks/useServices';
 import Card from '../Card/Card';
 
 const Services = () => {
-  const services = useServices([]);
+  const [services] = useServices();
 
   return (
     <section

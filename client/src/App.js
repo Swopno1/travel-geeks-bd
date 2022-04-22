@@ -15,6 +15,7 @@ import AboutMe from './Pages/AboutMe/AboutMe';
 import ContactMe from './Pages/ContactMe/ContactMe';
 import RequireAdminAuth from './components/RequireAuth/RequireAdminAuth';
 import AddService from './Pages/AddService/AddService';
+import ManageServices from './Pages/ManageServices/ManageServices';
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
             element={
               <RequireAdminAuth>
                 <AddService></AddService>
+              </RequireAdminAuth>
+            }
+          ></Route>
+          <Route
+            path='/manageservices'
+            element={
+              <RequireAdminAuth>
+                <ManageServices></ManageServices>
               </RequireAdminAuth>
             }
           ></Route>
