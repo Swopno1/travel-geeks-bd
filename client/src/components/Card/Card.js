@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Card = ({ service }) => {
-  const { name, img, description, price } = service;
+  const { _id, name, img, description, price } = service;
 
   const navigate = useNavigate();
 
   const handleBookingBtn = (e) => {
-    navigate(`/services/${service.id}`);
+    navigate(`/services/${_id}`);
   };
 
   return (

@@ -13,6 +13,8 @@ import Checkout from './Pages/Checkout/Checkout';
 import Blogs from './Pages/Blogs/Blogs';
 import AboutMe from './Pages/AboutMe/AboutMe';
 import ContactMe from './Pages/ContactMe/ContactMe';
+import RequireAdminAuth from './components/RequireAuth/RequireAdminAuth';
+import AddService from './Pages/AddService/AddService';
 
 function App() {
   return (
@@ -28,6 +30,14 @@ function App() {
           <Route path='/contact' element={<ContactMe></ContactMe>} />
           <Route path='/signin' element={<Signin></Signin>} />
           <Route path='/register' element={<Register></Register>} />
+          <Route
+            path='/services/add'
+            element={
+              <RequireAdminAuth>
+                <AddService></AddService>
+              </RequireAdminAuth>
+            }
+          ></Route>
           <Route
             path='/services/:serviceID'
             element={
