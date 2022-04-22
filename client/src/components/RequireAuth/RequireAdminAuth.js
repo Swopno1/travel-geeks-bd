@@ -11,7 +11,7 @@ const RequireAdminAuth = ({ children }) => {
   if (loading) {
     return <Loading></Loading>;
   }
-  if (user.email !== 'amirhossain.limon@gmail.com') {
+  if (user?.email !== 'amirhossain.limon@gmail.com') {
     return (
       <Navigate to='/signin' state={{ from: location }} replace></Navigate>
     );

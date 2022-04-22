@@ -31,7 +31,7 @@ function App() {
           <Route path='/signin' element={<Signin></Signin>} />
           <Route path='/register' element={<Register></Register>} />
           <Route
-            path='/services/add'
+            path='/addservice'
             element={
               <RequireAdminAuth>
                 <AddService></AddService>

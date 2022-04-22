@@ -7,8 +7,8 @@ import {
 import auth from '../../firebase.init';
 import Loading from '../../components/Loading/Loading';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Signin = () => {
@@ -50,11 +50,11 @@ const Signin = () => {
     const email = emailRef.current.value;
     if (email) {
       await sendPasswordResetEmail(email);
-      // toast('Sent email');
-      alert('Sent email');
+      toast('Sent email');
+      // alert('Sent email');
     } else {
-      // toast('please enter your email address');
-      alert('please enter your email address');
+      toast('please enter your email address');
+      // alert('please enter your email address');
     }
   };
 

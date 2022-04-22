@@ -22,6 +22,7 @@ async function run() {
     await client.connect();
     const serviceCollection = client.db('travelGeeks').collection('services');
 
+    // GET: See Services List
     app.get('/service', async (req, res) => {
       const query = {};
       const cursor = serviceCollection.find(query);
@@ -30,6 +31,7 @@ async function run() {
       res.send(services);
     });
 
+    // Get Single Service
     app.get('/service/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -37,6 +39,14 @@ async function run() {
       const service = await serviceCollection.findOne(query);
 
       res.send(service);
+    });
+
+    // POST: Add new Service
+    app.post('/service', async (req, res) => {
+      const newService = req.body;
+
+      const result = await serviceCollection.insertOne(newService);
+      res.send(result);
     });
   } finally {
     console.log('Completed');
