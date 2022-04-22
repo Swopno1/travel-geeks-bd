@@ -1,4 +1,3 @@
-import { LockClosedIcon } from '@heroicons/react/solid';
 import React, { useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -8,59 +7,55 @@ import {
 import auth from '../../firebase.init';
 import Loading from '../../components/Loading/Loading';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Signin = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // const emailRef = useRef();
-  // const passwordRef = useRef();
-
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
   const navigate = useNavigate();
-  const location = useLocation('');
+  const location = useLocation();
 
   let from = location.state?.from?.pathname || '/';
-  let message = '';
-
+  let messageElement;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  const [sendPasswordResetEmail, sending, error2] =
-    useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-  if (error || error2) {
-    message = (
-      <p className='text-danger'>
-        Error: {error?.message} {error2?.message}
-      </p>
-    );
+  if (error) {
+    messageElement = <p className='text-danger'>Error: {error?.message}</p>;
   }
   if (loading || sending) {
-    message = <Loading></Loading>;
+    return <Loading></Loading>;
   }
-  // if (user) {
-  //   navigate(from, { replace: true });
-  // }
+  if (user) {
+    navigate(from ? from : '/', { replace: true });
+  }
 
-  const handleSignIn = (e) => {
-    console.log('SignIn Click');
-    e.preventDefault();
-
-    // const email = emailRef.current.value;
-    // const password = passwordRef.current.valur;
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
     signInWithEmailAndPassword(email, password);
-    navigate(from, { replace: true });
   };
 
-  // const navigateRegister = (e) => {
-  //   navigate('/register');
-  //   console.log('Navigate');
-  // };
+  const navigateRegister = (event) => {
+    navigate('/register');
+  };
 
-  const resetPassword = () => {
-    // const email = emailRef.current.value;
-    // sendPasswordResetEmail(email);
-    alert('Email sent!');
+  const resetPassword = async () => {
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      // toast('Sent email');
+      alert('Sent email');
+    } else {
+      // toast('please enter your email address');
+      alert('please enter your email address');
+    }
   };
 
   return (
@@ -68,16 +63,16 @@ const Signin = () => {
       <div className='min-h-full flex items-center justify-center pt-12 pb-8 px-4'>
         <div className='max-w-md w-full space-y-8'>
           <div>
-            <h1 className='text-center text-orange-500 text-5xl font-extrabold'>
-              <Link to='/'>
+            <Link to='/'>
+              <h1 className='text-center text-orange-500 text-5xl font-extrabold'>
                 TravelGeeks<span className='text-black'>BD</span>
-              </Link>
-            </h1>
+              </h1>
+            </Link>
             <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-              Please Register
+              Please SignIn
             </h2>
           </div>
-          {message}
+          {messageElement}
           <form className='mt-8 space-y-6' onSubmit={handleSignIn}>
             <div className='rounded-md shadow-md -space-y-px'>
               <div>
@@ -85,8 +80,8 @@ const Signin = () => {
                   Email address
                 </label>
                 <input
-                  // ref={emailRef}
-                  onBlur={() => setEmail()}
+                  ref={emailRef}
+                  // onBlur={() => setEmail()}
                   id='email-address'
                   name='email'
                   type='email'
@@ -101,8 +96,8 @@ const Signin = () => {
                   Password
                 </label>
                 <input
-                  // ref={passwordRef}
-                  onBlur={() => setPassword()}
+                  ref={passwordRef}
+                  // onBlur={() => setPassword()}
                   id='password'
                   name='password'
                   type='password'
@@ -118,7 +113,7 @@ const Signin = () => {
                 New to TravelGeeksBD?{' '}
                 <Link
                   to='/register'
-                  // onClick={navigateRegister}
+                  onClick={navigateRegister}
                   className='font-medium text-indigo-600 hover:text-indigo-500'
                 >
                   Please Register now
