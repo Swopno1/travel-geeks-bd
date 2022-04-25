@@ -1,9 +1,9 @@
 import React from 'react';
 import useServices from '../../hooks/useServices';
-import Card from '../Card/Card';
+import Card from '../../components/Card/Card';
 
 const Services = () => {
-  const services = useServices([]);
+  const [services] = useServices();
 
   return (
     <section

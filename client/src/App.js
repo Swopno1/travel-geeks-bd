@@ -4,7 +4,7 @@ import Register from './Pages/Register/Register';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Services from './components/Services/Services';
+import Services from './Pages/Services/Services';
 import Home from './Pages/Home/Home/Home';
 import NotFound from './Pages/NotFound/NotFound';
 import Signin from './Pages/Signin/Signin';
@@ -15,6 +15,7 @@ import AboutMe from './Pages/AboutMe/AboutMe';
 import ContactMe from './Pages/ContactMe/ContactMe';
 import RequireAdminAuth from './components/RequireAuth/RequireAdminAuth';
 import AddService from './Pages/AddService/AddService';
+import ManageServices from './Pages/ManageServices/ManageServices';
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
             element={
               <RequireAdminAuth>
                 <AddService></AddService>
+              </RequireAdminAuth>
+            }
+          ></Route>
+          <Route
+            path='/manageservices'
+            element={
+              <RequireAdminAuth>
+                <ManageServices></ManageServices>
               </RequireAdminAuth>
             }
           ></Route>
