@@ -16,6 +16,7 @@ import ContactMe from './Pages/ContactMe/ContactMe';
 import RequireAdminAuth from './components/RequireAuth/RequireAdminAuth';
 import AddService from './Pages/AddService/AddService';
 import ManageServices from './Pages/ManageServices/ManageServices';
+import Service from './Pages/Service/Service';
 
 function App() {
   return (
@@ -47,8 +48,9 @@ function App() {
               </RequireAdminAuth>
             }
           ></Route>
+          <Route path='/service/:serviceID' element={<Service></Service>} />
           <Route
-            path='/services/:serviceID'
+            path='/checkout/:serviceID'
             element={
               <RequireAuth>
                 <Checkout></Checkout>
