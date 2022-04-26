@@ -52,7 +52,7 @@ const Checkout = () => {
             name='name'
             id='name'
             placeholder='Name'
-            value={user.displayName}
+            value={user?.displayName}
             readOnly
             required
           />
@@ -62,7 +62,7 @@ const Checkout = () => {
             name='email'
             id='email'
             placeholder='email'
-            value={user.email}
+            value={user?.email}
             readOnly
             required
           />

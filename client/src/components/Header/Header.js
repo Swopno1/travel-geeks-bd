@@ -44,6 +44,13 @@ const Header = () => {
               </Link>
             </>
           )}
+          {user && (
+            <>
+              <Link className='pr-2' to='/orders'>
+                Orders
+              </Link>
+            </>
+          )}
           {user ? (
             <>
               <button onClick={handleSignOut}>Sign Out</button>
