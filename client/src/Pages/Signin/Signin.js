@@ -9,7 +9,6 @@ import Loading from '../../components/Loading/Loading';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Signin = () => {
   const emailRef = useRef('');
@@ -17,7 +16,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  let from = location.state?.from?.pathname || '/';
+  let from = location.state?.from?.pathname || '/home';
   let messageElement;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -31,15 +30,26 @@ const Signin = () => {
     return <Loading></Loading>;
   }
   if (user) {
-    navigate(from ? from : '/', { replace: true });
+    navigate(from, { replace: true });
   }
 
-  const handleSignIn = (event) => {
+  const handleSignIn = async (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+    fetch('http://localhost:5000/signin', {
+      method: 'POST',
+      headers: {
+        'content-type': 'Application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem('accessToken', data.accessToken);
+      });
   };
 
   const navigateRegister = (event) => {

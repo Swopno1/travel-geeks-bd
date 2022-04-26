@@ -8,7 +8,11 @@ const Order = () => {
   useEffect(() => {
     const email = user.email;
     const url = `http://localhost:5000/order?email=${email}`;
-    fetch(url)
+    fetch(url, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
