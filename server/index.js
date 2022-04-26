@@ -21,6 +21,9 @@ async function run() {
   try {
     await client.connect();
     const serviceCollection = client.db('travelGeeks').collection('services');
+    const orderCollection = client.db('travelGeeks').collection('order');
+
+    // Service Collection API
 
     // GET: See Services List
     app.get('/service', async (req, res) => {
@@ -54,6 +57,16 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await serviceCollection.deleteOne(query);
+
+      res.send(result);
+    });
+
+    // Order collection API
+
+    // POST: Add/post a new order
+    app.post('/order', async (req, res) => {
+      const order = req.body;
+      const result = await orderCollection.insertOne(order);
 
       res.send(result);
     });
