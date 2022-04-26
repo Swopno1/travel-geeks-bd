@@ -14,7 +14,10 @@ const Order = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setOrders(data));
+      .then((data) => setOrders(data))
+      .catch((error) => {
+        console.log('error');
+      });
   }, []);
 
   return (
