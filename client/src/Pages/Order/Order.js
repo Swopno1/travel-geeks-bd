@@ -7,7 +7,7 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const email = user.email;
-    const url = `http://localhost:5000/order?email=${email}`;
+    const url = `https://radiant-wildwood-96648.herokuapp.com/order?email=${email}`;
     fetch(url, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,

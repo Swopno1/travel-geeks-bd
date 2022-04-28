@@ -39,7 +39,7 @@ const Signin = () => {
     const password = passwordRef.current.value;
 
     await signInWithEmailAndPassword(email, password);
-    fetch('http://localhost:5000/signin', {
+    fetch('https://radiant-wildwood-96648.herokuapp.com/signin', {
       method: 'POST',
       headers: {
         'content-type': 'Application/json',

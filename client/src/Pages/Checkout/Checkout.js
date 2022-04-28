@@ -19,7 +19,7 @@ const Checkout = () => {
       phone: e.target.phone.value,
     };
 
-    fetch('http://localhost:5000/order', {
+    fetch('https://radiant-wildwood-96648.herokuapp.com/order', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
