@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   useSendPasswordResetEmail,
@@ -9,6 +9,7 @@ import Loading from '../../components/Loading/Loading';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useToken from '../../hooks/useToken';
 
 const Signin = () => {
   const emailRef = useRef('');
@@ -22,6 +23,7 @@ const Signin = () => {
     useSignInWithEmailAndPassword(auth);
 
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [token] = useToken(user);
 
   if (error) {
     messageElement = <p className='text-danger'>Error: {error?.message}</p>;
@@ -29,7 +31,7 @@ const Signin = () => {
   if (loading || sending) {
     return <Loading></Loading>;
   }
-  if (user) {
+  if (token) {
     navigate(from, { replace: true });
   }
 
@@ -39,17 +41,6 @@ const Signin = () => {
     const password = passwordRef.current.value;
 
     await signInWithEmailAndPassword(email, password);
-    fetch('https://radiant-wildwood-96648.herokuapp.com/signin', {
-      method: 'POST',
-      headers: {
-        'content-type': 'Application/json',
-      },
-      body: JSON.stringify({ email }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem('accessToken', data.accessToken);
-      });
   };
 
   const navigateRegister = (event) => {
